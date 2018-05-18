@@ -8,18 +8,32 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppComponent implements OnInit {
   recommendation: any;
+  category: any;
   anime = [];
+  categories = [];
 
-  title = "recommendations";
-  url = "https://kitsu.io/api/edge/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=10&page%5Boffset%5D=13426";
+  title = "ani recommends";
+  categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=title&page%5Blimit%5D=1000";
+  animeDetailsURL = "https://kitsu.io/api/edge/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=10&page%5Boffset%5D=13426";
 
   constructor(private http: HttpClient) {}
 
   getKitsu() {
-    const request$ = this.http.get(this.url);
+    const categoriesRequest$ = this.http.get(this.categoriesURL);
+    const detailsRequest$ = this.http.get(this.animeDetailsURL);
 
-    request$.subscribe(someResult => {
-      console.log(someResult);
+    categoriesRequest$.subscribe(someResult => {
+      this.category = someResult;
+
+      this.categories = this.category.data.map(category => {
+        return {
+          id: category.id,
+          title: category.attributes.title
+        };
+      });
+    });
+
+    detailsRequest$.subscribe(someResult => {
       this.recommendation = someResult;
 
       this.anime = this.recommendation.data.map(recommendation => {

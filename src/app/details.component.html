@@ -10,13 +10,11 @@
 
 <div>
   <ul>
-    <li *ngFor="let category of categories">
-      <div class="category">
-        <div class="category-title">
-          <a href="https://kitsu.io/api/edge/categories/{{category.id}}/anime">
-            {{category.title}}
-          </a>
-        </div>
+    <li *ngFor="let animeItem of anime">
+      <div class="rec">
+        <div class="anime-title">{{animeItem.title}}</div>
+        <div class="poster"><img src="{{animeItem.poster.small}}" /></div>
+        <div class="synopsis">{{animeItem.synopsis}}</div>
       </div>
     </li>
   </ul>
