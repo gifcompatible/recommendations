@@ -2,10 +2,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
+import { DetailsComponent } from "./details.component";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DetailsComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

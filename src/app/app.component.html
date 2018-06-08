@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -9,14 +8,12 @@
 </div>
 
 <div>
-  <ul>
+  <ul class="container">
     <li *ngFor="let category of categories">
       <div class="category">
-        <div class="category-title">
-          <a href="https://kitsu.io/api/edge/categories/{{category.id}}/anime">
-            {{category.title}}
-          </a>
-        </div>
+        <a href="https://kitsu.io/api/edge/categories/{{category.id}}/anime">
+          {{category.title}}
+        </a>
       </div>
     </li>
   </ul>
