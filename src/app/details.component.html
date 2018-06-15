@@ -9,7 +9,11 @@
     <li *ngFor="let animeItem of anime">
       <div class="rec">
         <div class="anime-title">{{animeItem.title}}</div>
-        <div class="poster"><img src="{{animeItem.poster.small}}" /></div>
+        <div class="poster">
+          <a href="https://kitsu.io/anime/{{animeItem.id}}">
+            <img src="{{animeItem.poster.small}}" />
+          </a>
+        </div>
         <div class="synopsis">{{animeItem.synopsis}}</div>
       </div>
     </li>
