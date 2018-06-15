@@ -9,6 +9,7 @@ import { HttpClient } from "@angular/common/http";
 export class AppComponent implements OnInit {
   category: any;
   categories = [];
+  selectedCategory: any;
 
   title = "ani recommends";
   categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=title&page%5Blimit%5D=1000";
@@ -28,6 +29,10 @@ export class AppComponent implements OnInit {
         };
       });
     });
+  }
+
+  selectCategory(category) {
+    this.selectedCategory = category;
   }
 
   ngOnInit() {
