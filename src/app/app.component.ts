@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  getCategory() {
+  listCategories() {
     const categoriesRequest$ = this.http.get(this.categoriesURL);
 
     categoriesRequest$.subscribe(someResult => {
@@ -36,6 +36,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategory();
+    this.listCategories();
   }
 }

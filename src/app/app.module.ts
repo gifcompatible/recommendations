@@ -3,18 +3,27 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from "./app.component";
+import { CategoryComponent } from "./category.component";
 import { DetailsComponent } from "./details.component";
 import { HttpClientModule } from "@angular/common/http";
 
 const appRoutes: Routes = [
   {
     path: 'category/:id',
-    component: DetailsComponent,
+    component: CategoryComponent,
   },
+  {
+    path: 'anime/:id',
+    component: DetailsComponent
+  },
+  {
+    path '',
+    component: AppComponent
+  }
 ];
 
 @NgModule({
-  declarations: [AppComponent, DetailsComponent],
+  declarations: [AppComponent, CategoryComponent, DetailsComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,
