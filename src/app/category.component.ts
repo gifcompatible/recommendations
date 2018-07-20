@@ -1,5 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { AppComponent } from "./app.component";
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute, Router, ParamMap } from "../../node_modules/@angular/router";
+import { switchMap } from "../../node_modules/rxjs/operators";
 
 @Component({
   selector: "app-category",
@@ -33,7 +36,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .pipe(switchMap((params: ParamMap) => this.getCategory(params.get("id"))))
+      .pipe(switchMap((params: ParamMap) => this.getCategory(params.get("categoryId"))))
       .subscribe();
   }
 }

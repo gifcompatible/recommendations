@@ -9,21 +9,17 @@ import { HttpClientModule } from "@angular/common/http";
 
 const appRoutes: Routes = [
   {
-    path: 'category/:id',
-    component: CategoryComponent,
-  },
-  {
-    path: 'anime/:id',
+    path: 'category/:categoryId/anime/:animeId',
     component: DetailsComponent
   },
   {
-    path '',
-    component: AppComponent
+    path: '',
+    component: CategoryComponent,
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, CategoryComponent, DetailsComponent],
+  declarations: [AppComponent, DetailsComponent, CategoryComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,

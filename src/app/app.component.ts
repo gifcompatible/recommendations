@@ -1,6 +1,20 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { DetailsComponent } from "./details.component";
+import { Router } from "../../node_modules/@angular/router";
 
+interface Anime {
+  id: number;
+  attributes: {
+    posterImage: string;
+    canonicalTitle: string;
+    synopsis: string;
+  };
+}
+
+interface Response {
+  data: Anime[];
+}
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -9,12 +23,11 @@ import { HttpClient } from "@angular/common/http";
 export class AppComponent implements OnInit {
   category: any;
   categories = [];
-  selectedCategory: any;
 
   title = "ani recommends";
   categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=title&page%5Blimit%5D=1000";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   listCategories() {
     const categoriesRequest$ = this.http.get(this.categoriesURL);
@@ -31,8 +44,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-  selectCategory(category) {
-    this.selectedCategory = category;
+  getRecommendation(categoryId) {
+    // tslint:disable-next-line:max-line-length
+    const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=1`;
+    const detailsRequest$ = this.http.get<Response>(animeDetailsUrl);
+
+    return detailsRequest$.map(someResult => {
+      return someResult.data.map(recommendation => recommendation.id)[0];
+    });
+  }
+
+  goToRecommendation(categoryId) {
+    this.getRecommendation(categoryId).subscribe(animeId =>
+      this.router.navigateByUrl(`/category/${categoryId}/anime/${animeId}`)
+    );
   }
 
   ngOnInit() {

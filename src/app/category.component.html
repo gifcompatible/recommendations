@@ -1,14 +1,10 @@
-<router-outlet></router-outlet>
-
-<h1>hi</h1>
-
-<!-- <div>
+<div>
   <ul class="parent-container">
     <li class="child-item"
       *ngFor="let category of categories">
       <div class="category">
-        <button routerLink="category/{{category.id}}">{{category.title}}</button>
+        <button (click)="goToRecommendation(category.id)">{{category.title}}</button>
       </div>
     </li>
   </ul>
-</div> -->
+</div>

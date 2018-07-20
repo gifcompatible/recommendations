@@ -32,6 +32,7 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   getRecommendation(categoryId) {
+    // tslint:disable-next-line:max-line-length
     const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=1`;
     const detailsRequest$ = this.http.get(animeDetailsUrl);
 
