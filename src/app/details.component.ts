@@ -1,14 +1,12 @@
 import {
   Component,
   OnInit,
-  OnChanges,
   Input,
-  SimpleChanges
 } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap, map } from "rxjs/operators";
+import { switchMap } from "rxjs/operators";
 import "rxjs/add/operator/map";
 
 @Component({
@@ -33,13 +31,11 @@ export class DetailsComponent implements OnInit {
 
   getRecommendation(categoryId) {
     // tslint:disable-next-line:max-line-length
-    const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=1`;
-    const detailsRequest$ = this.http.get(animeDetailsUrl);
+    const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D`;
+    const detailsRequest$ = this.http.get<any>(animeDetailsUrl);
 
     return detailsRequest$.map(someResult => {
-      this.recommendation = someResult;
-
-      this.recommendation.data.map(recommendation => {
+      this.anime = someResult.data.map(recommendation => {
         return {
           id: recommendation.id,
           poster: recommendation.attributes.posterImage,
@@ -47,6 +43,8 @@ export class DetailsComponent implements OnInit {
           synopsis: recommendation.attributes.synopsis
         };
       });
+
+      this.recommendation = this.anime[0];
     });
   }
 
@@ -56,7 +54,7 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) =>
-          this.getRecommendation(params.get("id"))
+          this.getRecommendation(params.get("categoryId"))
         )
       )
       .subscribe();

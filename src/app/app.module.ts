@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from "./app.component";
-import { CategoryComponent } from "./category.component";
+import { CategoriesComponent } from "./categories.component";
 import { DetailsComponent } from "./details.component";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -14,12 +14,12 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    component: CategoryComponent,
+    component: CategoriesComponent,
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, DetailsComponent, CategoryComponent],
+  declarations: [AppComponent, DetailsComponent, CategoriesComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,

@@ -1,20 +1,12 @@
-<div style="text-align:center">
-  <h1>this is where the anime recommendation should show up</h1>
-</div>
-
 <div>
-  <ul>
-    <li *ngFor="let animeItem of anime">
-      <div class="rec">
-        <div class="anime-title">{{animeItem.title}}</div>
-        <div class="poster">
-          <a href="https://kitsu.io/anime/{{animeItem.id}}">
-            <img src="{{animeItem.poster.small}}" />
-          </a>
-        </div>
-        <div class="synopsis">{{animeItem.synopsis}}</div>
-      </div>
-    </li>
-  </ul>
+  <div class="rec" *ngIf="recommendation">
+    <div class="anime-title" >{{recommendation.title}}</div>
+    <div class="poster">
+      <a href="https://kitsu.io/anime/{{recommendation.id}}">
+        <img src="{{recommendation.poster.small}}" />
+      </a>
+    </div>
+    <div class="synopsis">{{recommendation.synopsis}}</div>
+  </div>
 </div>
 
