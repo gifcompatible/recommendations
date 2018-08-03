@@ -1,13 +1,17 @@
 <div>
   <div class="rec" *ngIf="recommendation">
-    <div class="anime-title" >{{recommendation.title}}</div>
-    <div class="poster">
-      <a href="https://kitsu.io/anime/{{recommendation.id}}">
-        <img src="{{recommendation.poster.small}}" />
-      </a>
+    <div class="title-and-poster">
+      <div class="title" >{{recommendation.title}}</div>
+      <div class="poster">
+        <a href="https://kitsu.io/anime/{{recommendation.id}}">
+          <img src="{{recommendation.poster.small}}" />
+        </a>
+      </div>
     </div>
     <div class="synopsis">{{recommendation.synopsis}}</div>
-    <!-- <div class="action-buttons">
+  </div>
+
+  <!-- <div class="action-buttons">
       <div class="button">
         <img class="arrow" (click)="previous($event)" src="assets/round-arrow_back-24px.svg">
         <span>Previous</span>
@@ -17,6 +21,5 @@
         <span>Next</span>
       </div>
     </div> -->
-  </div>
 </div>
 
