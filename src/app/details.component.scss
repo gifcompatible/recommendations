@@ -1,3 +1,19 @@
-ul {
-  list-style-type: none;
+.action-buttons {
+  display: flex;
+  justify-content: center;
+
+  .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  .arrow {
+    height: 4rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
 }
+

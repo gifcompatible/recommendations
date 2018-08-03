@@ -3,6 +3,7 @@ import {
   OnInit,
   Input,
 } from "@angular/core";
+import { Location } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
@@ -12,7 +13,7 @@ import "rxjs/add/operator/map";
 @Component({
   selector: "app-details",
   templateUrl: "./details.component.html",
-  styleUrls: ["./details.component.scss"]
+  styleUrls: ["./details.component.scss"],
 })
 export class DetailsComponent implements OnInit {
   @Input() categoryId: number;
@@ -26,8 +27,29 @@ export class DetailsComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
     app: AppComponent
   ) {}
+
+  // we only have one input (the category) and when it changes we need to re-fetch
+  // the anime
+  ngOnInit() {
+    this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) =>
+          this.getRecommendation(params.get("categoryId"))
+        )
+      )
+      .subscribe();
+  }
+
+  previous(event) {
+    this.location.back();
+  }
+
+  next(event) {
+    this.location.forward();
+  }
 
   getRecommendation(categoryId) {
     // tslint:disable-next-line:max-line-length
@@ -48,15 +70,4 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  // we only have one input (the category) and when it changes we need to re-fetch
-  // the anime
-  ngOnInit() {
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) =>
-          this.getRecommendation(params.get("categoryId"))
-        )
-      )
-      .subscribe();
-  }
 }
