@@ -15,11 +15,33 @@
 
   .poster {
     padding: 1rem;
-    background-color: #ffa8a0;
+  }
+
+  .poster img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .synopsis {
     background-color: #93f9ca;
+  }
+}
+
+@media (max-width: 1674px) {
+  .rec {
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .title-and-poster {
+      margin: 0 auto;
+    }
+
+    .synopsis {  
+      margin: 0 auto;
+      max-width: 50%;
+      background-color: thistle;
+    }
   }
 }
 
