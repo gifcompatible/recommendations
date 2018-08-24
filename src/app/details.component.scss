@@ -4,27 +4,28 @@
   justify-content: center;
   font-size: 2rem;
   margin: 10rem;
-
-  .title-and-poster {
-    flex-direction: column;
+  .description {
+    padding: 1rem;
   }
-
   .title {
-    text-align: center;
+    padding: 0 1rem;
+    font-weight: bold;
+    font-size: 3rem;
   }
-
+  .text {
+    line-height: 3.5rem;
+  }
   .poster {
     padding: 1rem;
   }
-
   .poster img {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-
   .synopsis {
-    background-color: #93f9ca;
+    height: 100%;
+    padding: 0 1rem;
   }
 }
 
@@ -32,15 +33,13 @@
   .rec {
     flex-wrap: wrap;
     flex-direction: column;
-
-    .title-and-poster {
-      margin: 0 auto;
+    margin: 2rem;
+    .title {
+      text-align: center;
     }
-
-    .synopsis {  
+    .synopsis {
       margin: 0 auto;
       max-width: 50%;
-      background-color: thistle;
     }
   }
 }
@@ -48,7 +47,6 @@
 .action-buttons {
   display: flex;
   justify-content: center;
-
   .button {
     display: flex;
     flex-direction: column;
@@ -56,11 +54,9 @@
     vertical-align: top;
     text-align: center;
   }
-
   .arrow {
     height: 4rem;
     cursor: pointer;
     padding: 1rem;
   }
 }
-

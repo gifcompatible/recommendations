@@ -1,14 +1,20 @@
 <div>
   <div class="rec" *ngIf="recommendation">
-    <div class="title-and-poster">
-      <div class="title">{{recommendation.title}}</div>
-      <div class="poster">
-        <a href="https://kitsu.io/anime/{{recommendation.id}}">
-          <img src="{{recommendation.poster.small}}" />
-        </a>
+    <div class="poster">
+      <a href="https://kitsu.io/anime/{{recommendation.id}}">
+        <img src="{{recommendation.poster.small}}" />
+      </a>
+    </div>
+    <div class="description">
+      <div class="title">
+        <span class="text">{{recommendation.title}}</span>
+      </div>
+      <div class="synopsis">
+        <p class="text">
+          {{recommendation.synopsis}}
+        </p>
       </div>
     </div>
-    <div class="synopsis">{{recommendation.synopsis}}</div>
   </div>
 
   <!-- <div class="action-buttons">
