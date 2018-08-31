@@ -1,10 +1,9 @@
-<div>
-  <ul class="parent-container">
-    <li class="child-item"
-      *ngFor="let category of categories">
-      <div class="category">
-        <button (click)="goToRecommendation(category.id)">{{category.title}}</button>
-      </div>
-    </li>
-  </ul>
+<div class="parent-container">
+  <span *ngFor="let category of categories">
+    <div 
+    class="category"
+    (click)="goToRecommendation(category.id)">
+    {{category.title}} 
+    </div>
+  </span>
 </div>

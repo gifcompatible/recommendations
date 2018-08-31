@@ -1,3 +1,5 @@
+@import 'base';
+
 ul {
   list-style-type: none;
 }
@@ -5,20 +7,12 @@ ul {
 .parent-container {
   display: flex;
   flex-wrap: wrap;
-  font-size: 1.5em;
+  justify-content: space-between;
 }
 
-.child-item {
-  flex: 1 0 10%; /* explanation below */
+.category {
+  font-size: 1rem;
+  background-color: #fff3a8;
   margin: 10px;
   cursor: pointer;
 }
-
-/* .container {
-  font-size: 1.75em;
-  height: calc(100% * (1/20) - 10px - 1px);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
-
