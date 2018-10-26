@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { CategoriesComponent } from "./categories.component";
 import { DetailsComponent } from "./details.component";
 import { HttpClientModule } from "@angular/common/http";
+import { RecommendationsService } from "./recommendations.service";
 const appRoutes: Routes = [
   {
     path: 'category/:categoryId/anime/:animeId',
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [RecommendationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
