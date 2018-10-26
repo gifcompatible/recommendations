@@ -15,6 +15,10 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  ngOnInit() {
+    this.listCategories();
+  }
+
   listCategories() {
     const categoriesRequest$ = this.http.get(this.categoriesURL);
 
@@ -30,23 +34,7 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  getFirstRecommendationId(categoryId) {
-    // tslint:disable-next-line:max-line-length
-    const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D=1`;
-    const detailsRequest$ = this.http.get<any>(animeDetailsUrl);
-
-    return detailsRequest$.map(someResult => {
-      return someResult.data.map(recommendation => recommendation.id)[0];
-    });
-  }
-
   goToRecommendation(categoryId) {
-    this.getFirstRecommendationId(categoryId).subscribe(animeId =>
-      this.router.navigateByUrl(`/category/${categoryId}/anime/${animeId}`)
-    );
-  }
-
-  ngOnInit() {
-    this.listCategories();
+    this.router.navigateByUrl(`/category/${categoryId}/anime/`);
   }
 }
