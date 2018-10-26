@@ -42,11 +42,9 @@ export class DetailsComponent implements OnInit {
 
   previous() {
     this.recommendationsService.previousRecommendation();
-    // update URL
   }
 
   next() {
     this.recommendationsService.nextRecommendation();
-    // update URL
   }
 }
