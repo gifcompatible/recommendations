@@ -1,24 +1,36 @@
 import { Injectable, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { tap } from 'rxjs/operators/tap';
 
 @Injectable()
 export class RecommendationsService {
   currentRecommendation = new Subject();
   currentRecommendationIndex = 0;
   anime = [];
-
+  cache = {};
   @Input() categoryId: number;
 
   constructor(private http: HttpClient) { }
 
-  loadRecommendations(categoryId) {
-    // tslint:disable-next-line:max-line-length
-    const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D`;
-    const detailsRequest$ = this.http.get<any>(animeDetailsUrl);
+  fetchRecommendation(categoryId): Observable<any> {
+    const detailsResponse = this.cache[categoryId];
+    if (detailsResponse) {
+      return of(detailsResponse);
+    } else {
+      // tslint:disable-next-line:max-line-length
+     const animeDetailsUrl = `https://kitsu.io/api/edge/categories/${categoryId}/anime?fields[anime]=canonicalTitle,posterImage,synopsis&page%5Blimit%5D`;
+     return this.http.get<any>(animeDetailsUrl).pipe(
+       tap(response => this.cache[categoryId] = response)
+     );
+    }
+  }
 
-    return detailsRequest$.map(someResult => {
-      this.anime = someResult.data.map(recommendation => {
+  loadRecommendations(categoryId) {
+    return this.fetchRecommendation(categoryId).map(result => {
+      this.anime = result.data.map(recommendation => {
         return {
           id: recommendation.id,
           poster: recommendation.attributes.posterImage,

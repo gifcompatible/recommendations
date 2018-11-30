@@ -31,13 +31,11 @@ export class DetailsComponent implements OnInit {
     this.recommendationsService.currentRecommendation.subscribe((recommendation) => {
       this.recommendation = recommendation;
     });
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) =>
-        this.recommendationsService.loadRecommendations(params.get("categoryId"))
-        )
-      )
-      .subscribe();
+    this.route.paramMap.map((params: ParamMap) => {
+        this.recommendationsService.loadRecommendations(params.get("categoryId")).subscribe();
+      }
+    )
+    .subscribe();
   }
 
   previous() {

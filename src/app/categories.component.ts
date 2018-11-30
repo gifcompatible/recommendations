@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
+import { CategoriesService, Category } from "./categories.service";
 
 @Component({
   selector: "app-categories",
@@ -8,29 +8,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./categories.component.scss"]
 })
 export class CategoriesComponent implements OnInit {
-  categories = [];
-  category: any;
-
-  categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=title&page%5Blimit%5D=1000";
-
-  constructor(private http: HttpClient, private router: Router) {}
+  categories: Category[] = [];
+  constructor(private router: Router, private categoriesService: CategoriesService) {}
 
   ngOnInit() {
-    this.listCategories();
-  }
-
-  listCategories() {
-    const categoriesRequest$ = this.http.get(this.categoriesURL);
-
-    categoriesRequest$.subscribe(someResult => {
-      this.category = someResult;
-
-      this.categories = this.category.data.map(category => {
-        return {
-          id: category.id,
-          title: category.attributes.title
-        };
-      });
+    this.categoriesService.listCategories().subscribe(categories => {
+      this.categories = categories;
     });
   }
 
