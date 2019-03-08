@@ -11,8 +11,22 @@ ul {
 }
 
 .category {
-  font-size: 1rem;
-  background-color: #fff3a8;
-  margin: 10px;
+  font-size: 1.1rem;
+  margin: .25rem;
+  padding: .25rem;
   cursor: pointer;
+  color: #16a085;
+
+  &:nth-child(2n + 1) {
+    color: #2980b9;
+  }
+
+  &:nth-child(3n + 1) {
+    color: #8e44ad;
+  }
 }
+
+.grow:hover {
+  background-color: white;
+}
+
