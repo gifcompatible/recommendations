@@ -5,15 +5,15 @@ ul {
 }
 
 .parent-container {
+  margin: 0 10rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .category {
-  font-size: 1.1rem;
-  margin: .25rem;
-  padding: .25rem;
+  font-size: 2.5rem;
+  padding: .15rem;
   cursor: pointer;
   color: #16a085;
 
@@ -26,7 +26,12 @@ ul {
   }
 }
 
+@media (max-width: 1674px) {
+  .category {
+    font-size: 1.25rem;
+  }
+}
+
 .grow:hover {
   background-color: white;
 }
-

@@ -16,7 +16,12 @@
     line-height: 3.5rem;
   }
   .poster {
-    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+    }
   }
   .poster img {
     display: block;
