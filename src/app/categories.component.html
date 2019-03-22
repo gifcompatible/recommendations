@@ -2,7 +2,7 @@
   <span class="category grow" *ngFor="let category of categories">
     <div
     (click)="goToRecommendation(category.id)">
-    {{category.title}}
+    Title: {{category.title}} Total: {{category.totalMediaCount}} NSFW?: {{category.nsfw}}
     </div>
   </span>
 </div>
