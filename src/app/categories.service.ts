@@ -8,8 +8,6 @@ interface KitsuCategoryResponse {
   data: {
     id: any;
     attributes: {
-      nsfw: boolean;
-      totalMediaCount: number;
       title: string;
     };
   }[];
@@ -17,15 +15,13 @@ interface KitsuCategoryResponse {
 
 export interface Category {
   id: any;
-  nsfw: boolean;
-  totalMediaCount: number;
   title: any;
 }
 
 @Injectable()
 export class CategoriesService {
   cache: KitsuCategoryResponse | null;
-  categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=nsfw,totalMediaCount,title&page%5Blimit%5D=1000";
+  categoriesURL = "https://kitsu.io/api/edge/categories?fields[categories]=title&page%5Blimit%5D=1000";
 
   constructor(private http: HttpClient) {}
 
@@ -47,8 +43,6 @@ export class CategoriesService {
       return someResult.data.map(category => {
         return {
           id: category.id,
-          nsfw: category.attributes.nsfw,
-          totalMediaCount: category.attributes.totalMediaCount,
           title: category.attributes.title
         };
       });
