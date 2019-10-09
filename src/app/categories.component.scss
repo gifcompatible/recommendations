@@ -1,19 +1,17 @@
-@import 'base';
+@import "base";
 
 ul {
   list-style-type: none;
 }
 
 .parent-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .category {
-  font-size: 1.1rem;
-  margin: .25rem;
-  padding: .25rem;
+  font-size: 1.75rem; // all categories fit on largest screen w/no vertical scroll
+  padding: 0.15rem;
   cursor: pointer;
   color: #16a085;
 
@@ -26,7 +24,12 @@ ul {
   }
 }
 
+@media (max-width: 1674px) {
+  .category {
+    font-size: 0.87rem; // all categories fit on smallest screen w/no vertical scroll
+  }
+}
+
 .grow:hover {
   background-color: white;
 }
-

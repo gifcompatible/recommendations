@@ -4,7 +4,6 @@ import {
   Input,
 } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap } from "rxjs/operators";
 import "rxjs/add/operator/map";
 import { RecommendationsService } from "./recommendations.service";
 import { AppComponent } from "./app.component";

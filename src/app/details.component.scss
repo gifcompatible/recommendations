@@ -2,21 +2,24 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 2rem;
   margin: 10rem;
   .description {
     padding: 1rem;
   }
   .title {
     padding: 0 1rem;
-    font-weight: bold;
-    font-size: 3rem;
-  }
-  .text {
-    line-height: 3.5rem;
+    .text {
+      font-weight: bold;
+      font-size: 3rem;
+    }
   }
   .poster {
-    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+    }
   }
   .poster img {
     display: block;
@@ -26,6 +29,10 @@
   .synopsis {
     height: 100%;
     padding: 0 1rem;
+    .text {
+      line-height: 3rem;
+      font-size: 2rem;
+    }
   }
 }
 
@@ -36,10 +43,17 @@
     margin: 2rem;
     .title {
       text-align: center;
+      .text {
+        font-size: 1.5rem;
+      }
     }
     .synopsis {
       margin: 0 auto;
       max-width: 50%;
+      .text {
+        line-height: 1.5rem;
+        font-size: 1rem;
+      }
     }
   }
 }

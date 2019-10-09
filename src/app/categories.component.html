@@ -1,8 +1,7 @@
 <div class="parent-container">
   <span class="category grow" *ngFor="let category of categories">
-    <div
-    (click)="goToRecommendation(category.id)">
-    {{category.title}}
+    <div (click)="goToRecommendation(category.id)">
+      {{ category.title }}
     </div>
   </span>
 </div>
